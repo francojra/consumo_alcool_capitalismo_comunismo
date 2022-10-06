@@ -27,6 +27,23 @@ library(hrbrthemes)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
+cons_alc <- read.csv("total-alcohol-consumption-per-capita-litres-of-pure-alcohol.csv")
+view(cons_alc)
+names(cons_alc)
 
+# Manipular dados --------------------------------------------------------------------------------------------------------------------------
 
+cons_alc <- cons_alc %>%
+  select(-Code) %>%
+  rename(consumo = Total.alcohol.consumption.per.capita..liters.of.pure.alcohol..projected.estimates..15..years.of.age.) %>%
+  view()
+
+cons_alc1 <- cons_alc %>%
+  filter(Entity %in% c("United States", "Germany", "Japan",
+                       "China", "Cuba", "North Korea")) %>%
+  group_by(Entity) %>%
+  summarise(media = mean(consumo),
+            sd = sd(consumo), n = n(), 
+            se = sd/sqrt(n)) %>%
+  view()
 
