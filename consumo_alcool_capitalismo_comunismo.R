@@ -24,6 +24,7 @@
 library(tidyverse)
 library(cols4all)
 library(hrbrthemes)
+library(ggthemes)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +48,10 @@ cons_alc1 <- cons_alc %>%
             se = sd/sqrt(n)) %>%
   view()
 
+cons_alc13 <- cons_alc %>%
+  filter(Entity %in% c("United States", "China")) %>%
+  view()
+
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 c4a("safe", 6)
@@ -67,3 +72,17 @@ ggplot(cons_alc1, aes(x = fct_reorder(Entity, media), y = media,
               axis_text_size = 14) +
   theme(legend.position = "none",
         axis.text = element_text(color = "black"))
+
+c4a("dark2", 2)
+
+ggplot(cons_alc13, aes(x = Year, y = consumo, 
+                  group = Entity, col = Entity)) +
+  geom_line(size = 2.2) +
+  scale_color_manual(values = c("#1B9E77", "#D95F02"),
+                     labels = c("China", "Estados Unidos")) +
+  labs(x = "Tempo (anos)", y = "Consumo de álcool por pessoa (litros)", 
+       color = "Países") +
+  theme_hc() +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(color = "black", size = 15),
+        legend.text = element_text(size = 12))
