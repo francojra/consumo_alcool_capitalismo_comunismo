@@ -1,4 +1,4 @@
-# Consumo de álcool em países capitalistas e comunistas
+# Consumo de álcool em países democratas e autocratas
 
 ### Autoria do script: Jeanne Franco
 ### Data: 05/10/22
