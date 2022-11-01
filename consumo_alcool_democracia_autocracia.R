@@ -73,8 +73,6 @@ ggplot(cons_alc1, aes(x = fct_reorder(Entity, media), y = media,
   theme(legend.position = "none",
         axis.text = element_text(color = "black"))
 
-c4a("dark2", 2)
-
 ggplot(cons_alc13, aes(x = Year, y = consumo, 
                   group = Entity, col = Entity)) +
   geom_line(size = 2) +
